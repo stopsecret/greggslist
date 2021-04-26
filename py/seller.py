@@ -1,4 +1,5 @@
 import re
+import bcrypt
 
 class seller():
 	name = ""
@@ -16,15 +17,15 @@ class seller():
 			self.MOST_COMMON_PASSWORDS = f.read().split()
 
 	def __init__(self, name, email, password, ratings):
-		self.load_most_common_passwords()
 		self.basic_text_validation(name, "Name")
 		self.basic_text_validation(email, "Email")
 		self.basic_text_validation(password, "Password")
 		self.email_validation(email)
+		self.load_most_common_passwords()
 		self.password_validation(password)
 		self.name = name
 		self.email = email
-		self.password = password
+		self.password = self.get_hashed_password(password)
 		self.ratings = ratings
 	
 	def get_rating(self):
@@ -47,8 +48,6 @@ class seller():
 	def password_validation(self, password):
 		if len(password) < self.MIN_PASSWORD_LENGTH:
 			raise Exception(f'Password "{password}" must be at least {self.MIN_PASSWORD_LENGTH} characters long')
-		if password.lower() == password:
-			raise Exception(f'Password "{password}" must have at least 1 uppercase letter')
 		has_special = False
 		has_number = False
 		for special in self.PASSWORD_REQUIRED_SPECIAL:
@@ -67,5 +66,8 @@ class seller():
 			if common_password.lower() in password.lower():
 				raise Exception(f'Password "{password}" is not valid, as it is too common')
 		
-	
-	
+	def get_hashed_password(password):
+		return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+
+	def check_password(password, hashed_password):
+		return bcrypt.checkpw(password.encode('utf-8'), hashed_password)

@@ -7,7 +7,7 @@ class test_seller_validation(unittest.TestCase):
     def test_can_create(self):
         seller("John Doe", "jdoe@doe.com", "lambdaPass312@", {})
 
-    """def test_cannot_create_empty_username(self):
+    def test_cannot_create_empty_username(self):
         self.assertRaises(Exception, 
         lambda: seller("", "jdoe@doe.com", "lambdaPass312@", {}))
 
@@ -34,10 +34,6 @@ class test_seller_validation(unittest.TestCase):
     def test_password_cannot_be_too_short(self):
         self.assertRaises(Exception, 
         lambda: seller("John Doe", "jdoe@doe.com", "Q#1", {}))
-
-    def test_password_must_have_uppercase(self):
-        self.assertRaises(Exception, 
-        lambda: seller("John Doe", "jdoe@doe.com", "lambdapass312@", {}))
 
     def test_password_must_have_number(self):
         self.assertRaises(Exception, 
@@ -72,7 +68,7 @@ class test_seller_validation(unittest.TestCase):
 
     def test_cannot_create_email_not_valid(self):
         self.assertRaises(Exception, 
-        lambda: seller("John Doe", "@jdoedoecom.", "", {})) """
+        lambda: seller("John Doe", "@jdoedoecom.", "", {}))
 
 class test_seller_properties(unittest.TestCase):
     new_seller = seller(
