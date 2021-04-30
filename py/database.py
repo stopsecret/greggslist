@@ -1,3 +1,4 @@
+import json
 
 class database():
     db = {
@@ -7,14 +8,19 @@ class database():
     }
 
     def __init__(self, save_name):
-        self.db[save_name] = save_name
+        self.db['save_name'] = save_name
         self.load()
 
     def load(self):
-        pass
+        try:
+            with open(f'py/resources/{self.db["save_name"]}.json', 'r') as f:
+                self.db = json.load(f)
+        except FileNotFoundError:
+            pass
 
     def save(self):
-        pass
+        with open(f'py/resources/{self.db["save_name"]}.json', 'w') as f:
+            json.dump(self.db, f)
 
     def add_update_seller(self, seller):
         self.db['sellers'][seller.email] = seller
