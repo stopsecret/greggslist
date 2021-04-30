@@ -3,11 +3,12 @@ from listing import listing
 
 class test_listing_validation(unittest.TestCase):
     def test_can_create(self):
-        new_listing = listing("", "", "", [], 0, 0)
+        new_listing = listing(0, "", "", "", [], 0, 0)
         self.assertIsNotNone(new_listing)
 
 class test_listing_properties(unittest.TestCase):
     listing = listing(
+        id=6,
         title = "Used $5,000 Ford Escape",
         description = "Haven't used this much since I got some new wheels",
         sellerId = "1003",
@@ -16,6 +17,7 @@ class test_listing_properties(unittest.TestCase):
         views = 20)
 
     def test_properties_correct(self):
+        self.assertEqual(6, self.listing.id)
         self.assertEqual("Used $5,000 Ford Escape", self.listing.title)
         self.assertEqual("Haven't used this much since I got some new wheels", self.listing.description)
         self.assertEqual(3, len(self.listing.photos))

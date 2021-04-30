@@ -66,8 +66,8 @@ class seller():
 			if common_password.lower() in password.lower():
 				raise Exception(f'Password "{password}" is not valid, as it is too common')
 		
-	def get_hashed_password(password):
+	def get_hashed_password(self, password):
 		return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
-	def check_password(password, hashed_password):
+	def check_password(self, password, hashed_password):
 		return bcrypt.checkpw(password.encode('utf-8'), hashed_password)

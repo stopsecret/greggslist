@@ -52,7 +52,8 @@ class test_seller_validation(unittest.TestCase):
         lambda: seller("John Doe", "jdoe@doe.com", "passwordJonnyBoy", {}))
         
     def test_password_was_hashed(self):
-        seller("John Doe", "jdoe@doe.com", "qwerty", {})
+        new_seller = seller("John Doe", "jdoe@doe.com", "lambdaPass312@", {})
+        self.assertNotEqual(new_seller.password, "lambdaPass312@")
 
     def test_cannot_create_empty_email(self):
         self.assertRaises(Exception, 
@@ -83,7 +84,7 @@ class test_seller_properties(unittest.TestCase):
     def test_fields(self):
             self.assertEqual(self.new_seller.name, "John Doe")
             self.assertEqual(self.new_seller.email, "jdoe@example.com")
-            self.assertEqual(self.new_seller.password, "thisShouldBeHashed1@")
+            self.assertTrue(self.new_seller.check_password("thisShouldBeHashed1@", self.new_seller.password))
 
     def test_rating(self):
             self.assertEqual(self.new_seller.get_rating(), 7)
