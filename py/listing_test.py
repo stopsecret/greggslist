@@ -1,5 +1,5 @@
 import unittest
-from listing import listing
+from .listing import listing
 
 class test_listing_validation(unittest.TestCase):
     def test_can_create(self):

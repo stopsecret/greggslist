@@ -1,7 +1,7 @@
 import unittest
-from database import database
-from seller import seller
-from listing import listing
+from .database import database
+from .seller import seller
+from .listing import listing
 
 class test_database(unittest.TestCase):
 
