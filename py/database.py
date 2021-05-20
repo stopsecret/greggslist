@@ -1,4 +1,5 @@
 import json
+import jsonpickle
 
 class database():
     db = {
@@ -14,13 +15,14 @@ class database():
     def load(self):
         try:
             with open(f'py/resources/{self.db["save_name"]}.json', 'r') as f:
-                self.db = json.load(f)
+                self.db = jsonpickle.decode(f.read())
         except FileNotFoundError:
             pass
 
     def save(self):
         with open(f'py/resources/{self.db["save_name"]}.json', 'w') as f:
-            json.dump(self.db, f)
+            f.truncate(0)
+            f.write(jsonpickle.encode(self.db))
 
     def add_update_seller(self, seller):
         self.db['sellers'][seller.email] = seller
@@ -34,6 +36,7 @@ class database():
         return None
 
     def get_listing(self, id):
+        id = int(id)
         if id in self.db['listings']:
             return self.db['listings'][id]
         return None

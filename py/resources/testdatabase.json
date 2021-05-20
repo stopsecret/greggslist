@@ -1,1 +1,1 @@
-{"save_name": "testdatabase", "sellers": {"jdoe@doe.com": 
+{"save_name": "testdatabase", "sellers": {"jdoe@doe.com": {"py/object": "py.seller.seller", "name": "John Grisham", "email": "jdoe@doe.com", "password": {"py/b64": "JDJiJDEyJC80aU01ZEVTUnhmZU94Yi9wd3BqRHV4MGU4RE10OGh5SkJ4UEg2c3puQm4xN1NOc1JNYnYy"}, "ratings": {}}}, "listings": {"0": {"py/object": "py.listing.listing", "id": 0, "title": "Test A", "description": "", "sellerId": "", "photos": [], "inquiries": 0, "views": 0}}}
