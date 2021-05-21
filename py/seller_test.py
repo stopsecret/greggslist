@@ -1,5 +1,5 @@
 import unittest
-from seller import seller
+from .seller import seller
 from copy import deepcopy
 
 class test_seller_validation(unittest.TestCase):

@@ -1,0 +1,4 @@
+[tool.poetry.dependencies]
+bcrypt = "3.2.0"
+jsonpickle = "2.0.0"
+flask = "1.1.2"

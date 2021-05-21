@@ -1,7 +1,7 @@
 import unittest
-from database import database
-from seller import seller
-from listing import listing
+from .database import database
+from .seller import seller
+from .listing import listing
 
 class test_database(unittest.TestCase):
 
@@ -59,4 +59,6 @@ class test_database(unittest.TestCase):
         listing.title = "Test B"
         self.db.add_update_listing(listing)
         self.db.load()
+        listing = self.db.get_listing(0)
+        print(listing)
         self.assertEqual(listing.title, "Test A")
